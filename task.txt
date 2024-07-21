@@ -1,10 +1,18 @@
 REST API - JSON
 
+Hybrid Server --- for browers and for mobile developer
 
-GET /users - LIST ALL users
+GET /users - LIST ALL users  -DONE
 
-GET /users/1 - Get the user with ID 1
+GET /users/1 - Get the user with ID 1  -DONE
 GET /users/2 - Get the user with ID 2
+   .
+   .
+   .
+
+Dynamic Path Parameters   /users/x  - x can be from 1 to 1000
+GET /api/users/:id 
+:id - Variable | Dynamic Parameters
 
 
 POST /users - Create new user
