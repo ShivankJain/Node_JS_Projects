@@ -30,6 +30,20 @@ app.get('/api/users/:id',(req,res)=>{
     return res.json(user)
 })
 
+app.post('/api/users',(req,res)=>{ 
+    // TODO: create new user
+   return    res.json({status: "pending"})
+})
+
+app.patch('/api/users/:id',(req,res)=>{ 
+    // TODO: update a particular id/userr
+   return    res.json({status: "pending"})
+})
+
+app.delete('/api/users/:id',(req,res)=>{ 
+    // TODO: delete a user/id
+   return    res.json({status: "pending"})
+})
 
 
 app.listen(PORT,()=>console.log(`Server Started At PORT: ${PORT}`))

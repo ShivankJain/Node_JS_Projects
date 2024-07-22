@@ -12,7 +12,7 @@ GET /users/2 - Get the user with ID 2
 
 Dynamic Path Parameters   /users/x  - x can be from 1 to 1000
 GET /api/users/:id 
-:id - Variable | Dynamic Parameters
+:id - Variable | Dynamic Parameters   --- DONE
 
 
 POST /users - Create new user
