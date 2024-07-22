@@ -24,26 +24,51 @@ app.get("/api/users",(req,res)=>{
 
 //Express feature for variable|dynamic parameter  " : "
 
-app.get('/api/users/:id',(req,res)=>{ 
+app.route('/api/users/:id')
+   .get((req,res)=>{ 
     const id = Number(req.params.id)
     const user = users.find((user) => user.id === id)    
     return res.json(user)
-})
+    })
+    .patch((req,res)=>{   
+        // TODO: Update/Edit a particular id/userr
+        //    return    res.json({status: "pending"})
+         })
+    .delete((req,res)=>{  
+        // TODO: delete a user/id
+        //    return    res.json({status: "pending"})
+    })
+
+
 
 app.post('/api/users',(req,res)=>{ 
     // TODO: create new user
    return    res.json({status: "pending"})
 })
 
-app.patch('/api/users/:id',(req,res)=>{ 
-    // TODO: update a particular id/userr
-   return    res.json({status: "pending"})
-})
 
-app.delete('/api/users/:id',(req,res)=>{ 
-    // TODO: delete a user/id
-   return    res.json({status: "pending"})
-})
 
 
 app.listen(PORT,()=>console.log(`Server Started At PORT: ${PORT}`))
+
+
+
+
+
+// ###########  FOR SAME ROUTE WE CAN MERGE ############
+
+// app.get('/api/users/:id',(req,res)=>{ 
+//     const id = Number(req.params.id)
+//     const user = users.find((user) => user.id === id)    
+//     return res.json(user)
+// })
+
+// app.patch('/api/users/:id',(req,res)=>{ 
+//     // TODO: Update/Edit a particular id/userr
+//    return    res.json({status: "pending"})
+// })
+
+// app.delete('/api/users/:id',(req,res)=>{ 
+//     // TODO: delete a user/id
+//    return    res.json({status: "pending"})
+// })
