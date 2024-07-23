@@ -6,7 +6,7 @@ const app = express()
 const PORT = 8000
 
 
-app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({extended: false}))  
 
 // Routes
 
@@ -35,11 +35,22 @@ app.route('/api/users/:id')
     return res.json(user)
     })
     .patch((req,res)=>{   
-        // TODO: Update/Edit a particular id/userr
+        // TODO: Update/Edit a particular id/user
         //    return    res.json({status: "pending"})
          })
     .delete((req,res)=>{  
         // TODO: delete a user/id
+        const id = Number(req.params.id)
+        const user = users.find((user) => user.id === id )
+         if(!user){ 
+            return res.status(404).json({message: 'User not found'})
+         }
+
+         // array.splice(start, deleteCount, item1, item2, ...)
+
+        const deletedUser = users.splice(users.findIndex(user=>user.id === id),1)
+        
+        return res.json(deletedUser)
         //    return    res.json({status: "pending"})
     })
 
