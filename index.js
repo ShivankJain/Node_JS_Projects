@@ -6,7 +6,12 @@ const app = express()
 const PORT = 8000
 
 
-app.use(express.urlencoded({extended: false}))  
+app.use(express.urlencoded({extended: false})) 
+
+app.use((req,res,next)=>{
+    fs.appendFile('log.txt', `${Date.now()}: ${req.ip}: ${req.method}: ${req.path}\n`, (err,data)=>{ next(); } )
+    
+})
 
 // Routes
 
@@ -36,6 +41,15 @@ app.route('/api/users/:id')
     })
     .patch((req,res)=>{   
         // TODO: Update/Edit a particular id/user
+        const id = parseInt(req.params.id)
+        const user = users.find((user)=> user.id === id)
+        if(!user){ 
+            return res.status(404).json({message: 'User not found'})
+        }
+
+        user.email = req.body.email || user.email
+        return res.json(user)
+
         //    return    res.json({status: "pending"})
          })
     .delete((req,res)=>{  
