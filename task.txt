@@ -23,4 +23,5 @@ DELETE /users/1 - Delete the user with ID 1
 
 
 
+
 Website used for mock_data  : https://www.mockaroo.com/
