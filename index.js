@@ -1,11 +1,49 @@
 const express = require("express")
 const fs = require("fs")
 const users = require("./MOCK_DATA.json")
+const mongoose = require("mongoose")
 const { error } = require("console")
 
 const app = express()
 const PORT = 8000
 
+//Connection
+mongoose
+       .connect("mongodb://127.0.0.1:27017/youtube-app-1")
+       .then(()=>{console.log("MongoDB Conneted")})
+       .catch((err)=>console.log('MOngo Error',err))
+
+
+// Schema
+const userSchema = new mongoose.Schema({  
+    firstName: { 
+        type: String,
+        required: true,
+    },
+    lastName: { 
+        type: String,
+    },
+    email: { 
+        type: String,
+        required: true,
+        unique: true,
+    },
+    jobTitle: { 
+        type: String,
+    },
+    gender: { 
+        type: String,
+    },
+})
+
+const User = mongoose.model("user",userSchema)
+
+
+
+
+
+
+// Middleware Plugin
 
 app.use(express.urlencoded({extended: false})) 
 
@@ -13,6 +51,9 @@ app.use((req,res,next)=>{
     fs.appendFile('log.txt', `${Date.now()}: ${req.ip}: ${req.method}: ${req.path}\n`, (err,data)=>{ next(); } )
     
 })
+
+
+
 
 // Routes
 
