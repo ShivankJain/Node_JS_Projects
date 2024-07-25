@@ -2,3 +2,7 @@
 1721793598562: POST: /api/users/1001
 1721793687439: ::1: POST: /api/users/1001
 1721793690237: ::1: GET: /api/users
+1721885288396: ::1: GET: /api/users
+1721885497369: ::1: GET: /api/users
+1721885814599: ::1: GET: /api/users
+1721885878308: ::1: GET: /api/users

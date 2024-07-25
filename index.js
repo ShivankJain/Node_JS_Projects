@@ -28,6 +28,8 @@ app.get('/users',(req,res)=>{
 
 // REST API
 app.get("/api/users",(req,res)=>{
+  res.setHeader('X-MyName','Shivank Jain')  
+  console.log(req.headers)
   return res.json(users)
 })
 
