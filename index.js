@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema({
     gender: { 
         type: String,
     },
-})
+},{timestamps: true})
 
 const User = mongoose.model("user",userSchema)
 
@@ -115,7 +115,7 @@ app.route('/api/users/:id')
 
 
 
-app.post('/api/users',(req,res)=>{ 
+app.post('/api/users',async (req,res)=>{ 
     // TODO: create new user
     const body = req.body;
 
@@ -128,11 +128,22 @@ app.post('/api/users',(req,res)=>{
       return res.status(400).json({msg: 'All fields are required'}) 
     }
         
+    const result = await User.create({ 
+        firstName: body.first_name,
+        lastName: body.last_name,
+        email: body.email,
+        gender: body.gender,
+        jobTitle: body.job_title,
+    }) 
+     
+    // console.log('result',result)
 
-    users.push({...body, id: users.length + 1})
-    fs.writeFile('./MOCK_DATA.json',JSON.stringify(users),(err,data)=>{ 
-        return    res.status(201).json({status: "success", id: users.length})
-    })
+    return res.status(201).json({msg: 'success'})
+
+    // users.push({...body, id: users.length + 1})
+    // fs.writeFile('./MOCK_DATA.json',JSON.stringify(users),(err,data)=>{ 
+    //     return    res.status(201).json({status: "success", id: users.length})
+    // })
 })
 
 
